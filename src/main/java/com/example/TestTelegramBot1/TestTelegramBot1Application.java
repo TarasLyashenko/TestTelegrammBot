@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @SpringBootApplication
@@ -32,8 +33,23 @@ public class TestTelegramBot1Application implements CommandLineRunner
     public void registerBot()
     {
         TestBot testBot = new TestBot("6386064861:AAFPIt9YRnGjKbmlTqwoJJj2sUO_j9WMtvQ");
-        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-        telegramBotsApi.registerBot(testBot);
+        TelegramBotsApi telegramBotsApi = null;
+        try
+        {
+            telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+        }
+        catch (TelegramApiException e)
+        {
+            throw new RuntimeException(e);
+        }
+        try
+        {
+            telegramBotsApi.registerBot(testBot);
+        }
+        catch (TelegramApiException e)
+        {
+            throw new RuntimeException(e);
+        }
 
     }
 }

@@ -16,4 +16,9 @@ public class TestBot extends TelegramLongPollingBot
     {
         return "TestTelergam_bot";
     }
+
+    public TestBot(String token)
+    {
+        super(token);
+    }
 }
