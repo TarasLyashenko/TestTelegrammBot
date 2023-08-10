@@ -16,7 +16,6 @@ public class TestBot extends TelegramLongPollingBot
         super(token);
     }
 
-    @Transactional
     @Override
     public void onUpdateReceived(Update update)
     {
