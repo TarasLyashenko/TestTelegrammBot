@@ -16,4 +16,10 @@ public class Lesson
 
     private String topic;
     private int numberHours;
+
+    public Lesson(String topic, int numberHours)
+    {
+        this.topic = topic;
+        this.numberHours = numberHours;
+    }
 }
