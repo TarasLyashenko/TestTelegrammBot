@@ -34,7 +34,7 @@ public class TestTelegramBot1Application implements CommandLineRunner
     @PostConstruct
     public void registerBot()
     {
-        TestBot testBot = new TestBot("6386064861:AAFPIt9YRnGjKbmlTqwoJJj2sUO_j9WMtvQ", lessonService);
+        TestBot testBot = new TestBot("6386064861:AAFPIt9YRnGjKbmlTqwoJJj2sUO_j9WMtvQ");
 
         TelegramBotsApi telegramBotsApi = null;
         try

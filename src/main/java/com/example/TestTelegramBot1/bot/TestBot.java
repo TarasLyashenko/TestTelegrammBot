@@ -1,24 +1,19 @@
 package com.example.TestTelegramBot1.bot;
 
-import com.example.TestTelegramBot1.dao.LessonDao;
 import com.example.TestTelegramBot1.service.LessonService;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class TestBot extends TelegramLongPollingBot
 {
     @Resource
-    private LessonDao lessonDao;
-    private final LessonService lessonService;
+    private LessonService lessonService;
 
-    @Autowired
-    public TestBot(String botToken, LessonService lessonService)
+    public TestBot(String token)
     {
-        super(botToken);
-        this.lessonService = lessonService;
+        super(token);
     }
 
     @Transactional
