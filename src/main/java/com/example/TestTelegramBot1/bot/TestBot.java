@@ -1,44 +1,36 @@
 package com.example.TestTelegramBot1.bot;
 
 import com.example.TestTelegramBot1.dao.LessonDao;
-import com.example.TestTelegramBot1.entity.Lesson;
+import com.example.TestTelegramBot1.service.LessonService;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class TestBot extends TelegramLongPollingBot
 {
-
     @Resource
     private LessonDao lessonDao;
+    private final LessonService lessonService;
 
+    @Autowired
+    public TestBot(String botToken, LessonService lessonService)
+    {
+        super(botToken);
+        this.lessonService = lessonService;
+    }
+
+    @Transactional
     @Override
     public void onUpdateReceived(Update update)
     {
-        Message message = update.getMessage();
-        if (message.getText().startsWith("ДобавитьЛекцию"))
-        {
-            String[] parts = message.getText().split(" ");
-            if (parts.length == 3)
-            {
-                String topic = parts[1];
-                int numberHours = Integer.parseInt(parts[2]);
-
-                Lesson lesson = new Lesson(topic, numberHours);
-                lessonDao.save(lesson);
-            }
-        }
+        lessonService.addLesson(update);
     }
 
     @Override
     public String getBotUsername()
     {
         return "TestTelergam_bot";
-    }
-
-    public TestBot(String token)
-    {
-        super(token);
     }
 }
