@@ -2,6 +2,7 @@ package com.example.TestTelegramBot1;
 
 import com.example.TestTelegramBot1.bot.TestBot;
 import com.example.TestTelegramBot1.dao.LessonDao;
+import com.example.TestTelegramBot1.service.LessonService;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
@@ -16,7 +17,15 @@ public class TestTelegramBot1Application implements CommandLineRunner
 {
     @Resource
     private LessonDao lessonDao;
+    @Resource
     private TestBot testBot;
+    @Resource
+    private final LessonService lessonService;
+
+    public TestTelegramBot1Application(LessonService lessonService)
+    {
+        this.lessonService = lessonService;
+    }
 
     public static void main(String[] args)
     {
