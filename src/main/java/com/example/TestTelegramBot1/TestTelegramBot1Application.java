@@ -17,8 +17,15 @@ public class TestTelegramBot1Application implements CommandLineRunner
 {
     @Resource
     private LessonDao lessonDao;
+    @Resource
     private TestBot testBot;
-    private LessonService lessonService;
+    @Resource
+    private final LessonService lessonService;
+
+    public TestTelegramBot1Application(LessonService lessonService)
+    {
+        this.lessonService = lessonService;
+    }
 
     public static void main(String[] args)
     {
@@ -35,7 +42,6 @@ public class TestTelegramBot1Application implements CommandLineRunner
     public void registerBot()
     {
         TestBot testBot = new TestBot("6386064861:AAFPIt9YRnGjKbmlTqwoJJj2sUO_j9WMtvQ");
-
         TelegramBotsApi telegramBotsApi = null;
         try
         {

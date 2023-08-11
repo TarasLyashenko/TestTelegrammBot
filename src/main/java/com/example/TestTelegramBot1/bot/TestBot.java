@@ -2,7 +2,6 @@ package com.example.TestTelegramBot1.bot;
 
 import com.example.TestTelegramBot1.service.LessonService;
 import jakarta.annotation.Resource;
-import jakarta.transaction.Transactional;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
