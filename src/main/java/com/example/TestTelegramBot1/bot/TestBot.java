@@ -1,17 +1,18 @@
 package com.example.TestTelegramBot1.bot;
 
 import com.example.TestTelegramBot1.service.LessonService;
+import jakarta.annotation.Resource;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class TestBot extends TelegramLongPollingBot
 {
+    @Resource
     private LessonService lessonService;
 
-    public TestBot(String token,  LessonService lessonService)
+    public TestBot(String token)
     {
         super(token);
-        this.lessonService = lessonService;
     }
 
     @Override

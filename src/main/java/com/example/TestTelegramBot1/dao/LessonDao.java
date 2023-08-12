@@ -10,3 +10,4 @@ public interface LessonDao extends CrudRepository<Lesson, Long>
     Lesson findByTopic(String topic);
     Lesson findByNumberHours(int numberHours);
 }
+
