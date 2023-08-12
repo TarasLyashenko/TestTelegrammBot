@@ -1,7 +1,6 @@
 package com.example.TestTelegramBot1;
 
 import com.example.TestTelegramBot1.bot.TestBot;
-import com.example.TestTelegramBot1.dao.LessonDao;
 import com.example.TestTelegramBot1.service.LessonService;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -16,16 +15,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class TestTelegramBot1Application implements CommandLineRunner
 {
     @Resource
-    private LessonDao lessonDao;
-    @Resource
-    private TestBot testBot;
-    @Resource
-    private final LessonService lessonService;
-
-    public TestTelegramBot1Application(LessonService lessonService)
-    {
-        this.lessonService = lessonService;
-    }
+    private LessonService lessonService;
 
     public static void main(String[] args)
     {
@@ -41,7 +31,8 @@ public class TestTelegramBot1Application implements CommandLineRunner
     @PostConstruct
     public void registerBot()
     {
-        TestBot testBot = new TestBot("6386064861:AAFPIt9YRnGjKbmlTqwoJJj2sUO_j9WMtvQ");
+
+        TestBot testBot = new TestBot("6386064861:AAFPIt9YRnGjKbmlTqwoJJj2sUO_j9WMtvQ", lessonService);
         TelegramBotsApi telegramBotsApi = null;
         try
         {
